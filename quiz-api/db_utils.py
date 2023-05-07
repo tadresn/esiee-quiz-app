@@ -107,3 +107,17 @@ class DataBase:
             results.append(result)
         return results
     
+    def delete_all_questions(self):
+        cur = self.connection.cursor()
+        cur.execute("begin")
+        cur.execute("DELETE FROM possible_answers")
+        cur.execute("DELETE FROM questions")
+        cur.execute("commit")
+
+    def delete_all_participations(self):
+        cur = self.connection.cursor()
+        cur.execute("begin")
+        cur.execute("DELETE FROM participations")
+        cur.execute("commit")
+    
+    

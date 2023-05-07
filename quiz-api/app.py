@@ -44,5 +44,21 @@ def PostRebuildDB():
 	db.rebuild_db()
 	return "Ok", 200
 
+@app.route('/questions/all', methods=['DELETE'])
+def DeleteAllQuestions():
+	if(jwt_utils.is_unauthorizated(request.headers.get('Authorization'))):
+		return {"error": "Unauthorized"}, 401
+	db = db_utils.DataBase()
+	db.delete_all_questions()
+	return "OK", 204
+
+@app.route('/participations/all', methods=['DELETE'])
+def DeleteAllParticipations():
+	if(jwt_utils.is_unauthorizated(request.headers.get('Authorization'))):
+		return {"error": "Unauthorized"}, 401
+	db = db_utils.DataBase()
+	db.delete_all_participations()
+	return "OK", 204
+
 if __name__ == "__main__":
     app.run()
