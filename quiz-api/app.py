@@ -2,6 +2,7 @@ from flask import Flask, request
 from flask_cors import CORS
 import jwt_utils
 import db_utils
+import models
 
 app = Flask(__name__)
 CORS(app)
@@ -13,7 +14,10 @@ def hello_world():
 
 @app.route('/quiz-info', methods=['GET'])
 def GetQuizInfo():
-	return {"size": 0, "scores": []}, 200
+	db = db_utils.DataBase()
+	size = db.count_questions()
+	score = db.get_participation_results()
+	return {"size": size, "scores": score}, 200
 
 @app.route('/login', methods=['POST'])
 def PostLogin():
@@ -22,20 +26,16 @@ def PostLogin():
 		token = jwt_utils.build_token()
 		return {"token":token}, 200
 	return {"error": "Unauthorized"}, 401
-
+	
 @app.route('/questions', methods=['POST'])
 def PostQuestion():
-	auth_header = request.headers.get('Authorization')
-	if auth_header is None:
-		return {"error": "Authorization header missing"}, 401
-	
-	auth_token = auth_header.split(" ")[1]
-	user = jwt_utils.decode_token(auth_token)
-	if(user != "quiz-app-admin"):
+	if(jwt_utils.is_unauthorizated(request.headers.get('Authorization'))):
 		return {"error": "Unauthorized"}, 401
 	
 	payload = request.get_json()
-	question_id =  db_utils.DataBase().insert_db(db_utils.Question().dict_to_question(payload))
+	question = models.Question(payload["position"], payload["title"], payload["text"], payload["image"], payload["possibleAnswers"])
+	db =  db_utils.DataBase()
+	question_id = db.insert_question(question)
 	return {"id":question_id}, 200
 
 @app.route('/rebuild-db', methods=['POST'])

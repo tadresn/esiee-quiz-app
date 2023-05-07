@@ -50,3 +50,13 @@ def decode_token(auth_token):
         raise JwtError('Signature expired. Please log in again.')
     except jwt.InvalidTokenError as e:
         raise JwtError('Invalid token. Please log in again.')
+
+def is_unauthorizated(auth_header):
+	if auth_header is None:
+		return True
+	
+	auth_token = auth_header.split(" ")[1]
+	user = decode_token(auth_token)
+	if(user != "quiz-app-admin"):
+		return True
+	return False
