@@ -1,5 +1,6 @@
 class Question:
-    def __init__(self, position: int, title: str, text: str, image: str, possible_answers):
+    def __init__(self, id: int, position: int, title: str, text: str, image: str, possible_answers):
+        self.id = id
         self.position = position
         self.title = title
         self.text = text
@@ -8,6 +9,7 @@ class Question:
 
     def question_to_dict(self):
         return {
+            "id": self.id,
             "position": self.position,
             "title": self.title,
             "text": self.text,
@@ -16,25 +18,29 @@ class Question:
         }
     
 class PossibleAnswer:
-    def __init__(self, text: str, isCorrect: int):
+    def __init__(self, id: int, text: str, isCorrect: int):
+        self.id = id
         self.text = text
         self.isCorrect = isCorrect
 
     def possibleAnswer_to_dict(self):
         return {
+            "id": self.id,
             "text": self.text,
             "isCorrect": self.isCorrect
         }
 
 class Participation:
-    def __init__(self, player_name: str, score: int, date):
+    def __init__(self, id: int, player_name: str, score: int, date):
+        self.id = id
         self.player_name = player_name
         self.score = score
         self.date = date
 
     def participation_to_dict(self):
         return {
-            "player_name": self.player_name,
+            "id": self.id,
+            "playerName": self.player_name,
             "score": self.score,
             "date": self.date
         }
