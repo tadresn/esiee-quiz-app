@@ -104,7 +104,6 @@ def DeleteQuestionById(id):
 def PostParticipation():
 	payload =  request.get_json()
 	answers = payload["answers"]
-	#player_name = payload["playerName"]
 	db = db_utils.DataBase()
 	if len(answers) != db.count_questions():
 		return {"error": "Incorrect number of answers"}, 400
