@@ -14,7 +14,7 @@
     </tr>
   </table>
   <div>
-  <router-link to="/start-new-quiz-page" class="lien">Démarrer le quiz !</router-link>
+  <router-link to="/new-quiz-page" class="lien">Démarrer le quiz !</router-link>
   </div>
 </div>
 </template>
