@@ -6,11 +6,11 @@ import { RouterLink, RouterView } from 'vue-router'
   <header>
       <nav>
         <RouterLink to="/">Accueil</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/admin">Admin</RouterLink>
       </nav>
   </header>
 
-  <main style="padding-top: 60px;">
+  <main>
   <RouterView />
   </main>
 
@@ -20,30 +20,36 @@ import { RouterLink, RouterView } from 'vue-router'
 </template>
 
 <style scoped>
-footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 50px; 
-  text-align: center;
-}
-p{
-  text-align: center;
-}
 header {
-  position: fixed;
+  position: relative;
   top: 0;
-  width: 100%;
-  height: 50px; 
-  line-height: 1.5;
-  max-height: 100vh;
-  z-index: 1000;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background-color: transparent;
+  z-index: 100;
+}
+main {
+  padding-top: 50px; 
+  padding-bottom: 50px;
+  min-height: calc(100vh - 150px);
+}
+footer {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background-color: rgba(0, 0, 0, 0.293);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 nav {
   width: 100%;
   font-size: 17px;
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 nav a.router-link-exact-active {

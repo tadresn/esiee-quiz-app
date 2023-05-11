@@ -51,14 +51,15 @@ class DataBase:
             raise Exception("Could not remove database file")
     
     def insert_question(self, question):
+        nbQuestion = self.count_questions()
         cur = self.connection.cursor()
         cur.execute("begin")
         # Check if the position is valid
-        if question.position > 10:
+        if question.position > nbQuestion + 1:
             raise ValueError("Invalid position for the question")
 
         # Shift the questions' positions if necessary
-        if question.position <= 10:
+        if question.position <= nbQuestion:
             # Get the questions with positions greater or equal to the new position
             cur.execute("SELECT id, position FROM questions WHERE position >= ? ORDER BY position DESC", (question.position,))
             rows = cur.fetchall()
@@ -158,10 +159,11 @@ class DataBase:
         return question
     
     def put_question_and_possible_answers_by_id(self, question):
+        nbQuestion = self.count_questions()
         cur = self.connection.cursor()
         cur.execute("begin")
         # Check if the position is valid
-        if question.position > 10:
+        if question.position > nbQuestion + 1:
             raise ValueError("Invalid position for the question")
         
         # Check if the new position is already taken

@@ -1,13 +1,22 @@
 <template>
-  <div class="container">
-        <p for="username" class="text-center">Saisissez votre nom :</p>
-        <input type="text" id="username" v-model="username" placeholder="Username"/>
-        <button class="lien" @click="launchNewQuiz">GO !</button>
-  </div> 
+<div class="d-flex justify-content-center">
+<div class="card card-custom text-center">
+  <div class="card-body">
+    <div class="form-container my-5">
+      <div class="d-flex flex-column">
+        <h5 for="username" class="card-title">Saisissez votre nom</h5>
+        <input type="text" id="username" v-model="username" placeholder="Username" class="mt-4"/>
+      </div>
+      <button @click="launchNewQuiz" class="btn btn-outline-primary mt-5">GO !</button>
+    </div>
+  </div>
+</div>
+</div>
 </template>
 
 <script>
 import participationStorageService from "../services/ParticipationStorageService";
+
 export default {
   data(){
     return {
@@ -16,7 +25,6 @@ export default {
   },
   methods:{
     launchNewQuiz(){
-      console.log("Launch new quiz with", this.username);
       participationStorageService.savePlayerName(this.username);
       this.$router.push('/questions');
     },
@@ -26,11 +34,18 @@ export default {
 
 
 <style>
-input {
-  background-color : #000000; 
-  border: 2px solid rgb(167, 167, 167);
-  margin: 0px 0px 20px 0px;
-  border-radius: 5px;
-  color: white;
+.card-custom{
+max-width: 500px;
+max-height: 500px;
+background-color: rgba(73, 73, 73, 0.559);
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-container input {
+  width: 300px;
 }
 </style>
