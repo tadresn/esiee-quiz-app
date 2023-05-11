@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import QuizApiService from '../services/QuizApiService';
+import quizApiService from '../services/QuizApiService';
 
 export default {
   name: "HomePage",
@@ -30,7 +30,7 @@ export default {
     };
   },
   async created() {
-    await QuizApiService.getQuizInfo().then((value) => {
+    await quizApiService.getQuizInfo().then((value) => {
       this.registeredScores = value.data.scores
     })
 		console.log("Composant Home page 'created'");
@@ -45,6 +45,7 @@ export default {
   align-items: center;
   justify-content: center;
   height: 70vh;
+  font-family: Verdana;
 }
 table,
 th,
