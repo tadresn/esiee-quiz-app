@@ -35,5 +35,24 @@ export default {
   },
   postParticipation(playerName, answers){
     return this.call("post", "participations", {playerName, answers})
+  },
+  async postLogin(password){
+    const value = await this.call("post", "login", {password})
+    instance.defaults.headers.common.Authorization = `Bearer ${value.data.token}`
+  },
+  isAuthorized(){
+    if(instance.defaults.headers.common.Authorization){
+      return true;
+    }
+    else{
+      return false;
+    }
+  },
+  deconnected(){
+    delete instance.defaults.headers.common.Authorization;
+  },
+  deleteParticipationsAll(){
+    return this.call("delete", 'participations/all')
   }
+  
 };

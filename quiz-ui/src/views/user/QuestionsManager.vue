@@ -1,7 +1,7 @@
 <script>
-import QuestionDisplay from '../components/QuestionDisplay.vue';
-import quizApiService from '../services/QuizApiService';
-import participationStorageService from "../services/ParticipationStorageService";
+import QuestionDisplay from '../../components/QuestionDisplay.vue';
+import quizApiService from '../../services/QuizApiService';
+import participationStorageService from "../../services/ParticipationStorageService";
 
 export default {
   data () {

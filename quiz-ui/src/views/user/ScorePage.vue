@@ -1,5 +1,5 @@
 <script>
-import participationStorageService from '../services/ParticipationStorageService';
+import participationStorageService from '../../services/ParticipationStorageService';
 
 export default {
   computed: {

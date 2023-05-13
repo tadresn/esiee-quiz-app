@@ -13,12 +13,10 @@
       </div>
     </div>
   </div>
-
-
 </template>
 
 <script>
-import participationStorageService from "../services/ParticipationStorageService";
+import participationStorageService from "../../services/ParticipationStorageService";
 
 export default {
   data(){
