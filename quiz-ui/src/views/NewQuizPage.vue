@@ -1,17 +1,20 @@
 <template>
 <div class="d-flex justify-content-center">
-<div class="card card-custom text-center">
-  <div class="card-body">
-    <div class="form-container my-5">
-      <div class="d-flex flex-column">
-        <h5 for="username" class="card-title">Saisissez votre nom</h5>
-        <input type="text" id="username" v-model="username" placeholder="Username" class="mt-4"/>
+    <div class="card card-custom text-center">
+      <div class="card-body">
+        <div class="form-container my-5">
+          <div class="d-flex flex-column">
+            <h5 for="username" class="card-title">Saisissez votre nom</h5>
+            <input type="text" id="username" v-model="username" placeholder="Username" class="mt-4"/>
+            <div class="text-danger" v-if="errorMessage">{{ errorMessage }}</div>
+          </div>
+          <button @click="launchNewQuiz" class="btn btn-outline-primary mt-5">GO !</button>
+        </div>
       </div>
-      <button @click="launchNewQuiz" class="btn btn-outline-primary mt-5">GO !</button>
     </div>
   </div>
-</div>
-</div>
+
+
 </template>
 
 <script>
@@ -21,12 +24,18 @@ export default {
   data(){
     return {
       username: '',
+      errorMessage: ''
     }
   },
   methods:{
     launchNewQuiz(){
-      participationStorageService.savePlayerName(this.username);
-      this.$router.push('/questions');
+      if(this.username === ''){
+        this.errorMessage = 'Le nom est obligatoire';
+      }
+      else{
+        participationStorageService.savePlayerName(this.username);
+        this.$router.push('/questions');
+      }
     },
   }
 }
