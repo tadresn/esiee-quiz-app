@@ -53,6 +53,12 @@ export default {
   },
   deleteParticipationsAll(){
     return this.call("delete", 'participations/all')
+  },
+  deleteQuestionsAll(){
+    return this.call("delete", "questions/all")
+  },
+  deleteQuestionById(id){
+    return this.call("delete", `questions/${id}`)
   }
   
 };

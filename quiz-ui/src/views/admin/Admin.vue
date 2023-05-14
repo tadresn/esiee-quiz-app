@@ -4,8 +4,8 @@ import QuizApiService from '../../services/QuizApiService';
 
 export default {
   watch: {
-    '$route.name': function (after) {
-      if(after === "Admin" && !QuizApiService.isAuthorized()){
+    '$route.name': function () {
+      if(!QuizApiService.isAuthorized()){
         this.$router.push('/admin/login-page')
       }
     }
