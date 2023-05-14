@@ -23,6 +23,7 @@
           </table>
           <div class="text-center py-5">
             <button @click="deleteQuestionsAll()" class="btn btn-outline-danger">Supprimer les questions</button>
+            <button @click="this.$router.push('/admin/add-question')" class="btn btn-outline-success" style="margin-left: 50px;">Ajouter une question</button>
           </div>
         </div>
       </div>

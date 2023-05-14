@@ -59,6 +59,9 @@ export default {
   },
   deleteQuestionById(id){
     return this.call("delete", `questions/${id}`)
+  },
+  addQuestion(question){
+    return this.call("post", "questions", question)
   }
   
 };
