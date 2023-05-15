@@ -2,13 +2,13 @@
 <div class="quiz-form-container">
   <h5>Remplir le formulaire pour ajouter une question</h5>
   <form @submit.prevent="submitForm">
-    <label>Position</label>
+    <label>Position *</label>
     <input type="number" v-model="position" placeholder="Position" required>
-    <label>Titre</label>
+    <label>Titre *</label>
     <input type="text" v-model="title" placeholder="Titre" required>
-    <label>Texte</label>
+    <label>Texte *</label>
     <input type="text" v-model="text" placeholder="Texte" required>
-    <label>Image</label>
+    <label>Image *</label>
     <ImageUpload @file-change="imageFileChangedHandler" />
     <div class="possible-answers-container">
       <label class="text-center">Réponse possible</label>
@@ -73,7 +73,7 @@ export default {
     },
     async submitForm() {
       if (this.correctAnswerIndex === null) {
-        this.error = "Il faut sélectionner une bonne réponse.";
+        this.error = "Il faut au moins deux réponses possible et sélectionner une seule bonne réponse.";
         return;
       }
       let size = 0;
@@ -89,6 +89,14 @@ export default {
       const possibleAnswers = this.possibleAnswers.map(answer => {
         return {text: answer.text, isCorrect: answer === correctAnswer};
       });
+      if(possibleAnswers.length < 2){
+        this.error = "Il faut au moins deux réponses possible et sélectionner une seule bonne réponse."
+        return
+      }
+      if(this.image === null){
+        this.error = "Il faut une image."
+        return
+      }
       
       const question = {
         position: this.position,

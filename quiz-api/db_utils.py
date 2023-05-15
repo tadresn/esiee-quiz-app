@@ -16,7 +16,7 @@ class DataBase:
             position INTEGER NOT NULL,
             title TEXT NOT NULL,
             text TEXT NOT NULL,
-            image TEXT
+            image TEXT NOT NULL
             );
             """)
         cur.execute("""

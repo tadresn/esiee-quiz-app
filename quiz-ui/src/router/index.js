@@ -51,6 +51,11 @@ const router = createRouter({
           path:'add-question',
           name: "AddQuestion",
           component: () => import('../views/admin/AddQuestion.vue')
+        },
+        {
+          path:'update-question',
+          name: "UpdateQuestion",
+          component: () => import('../views/admin/UpdateQuestion.vue')
         }
       ]
     }

@@ -62,6 +62,8 @@ export default {
   },
   addQuestion(question){
     return this.call("post", "questions", question)
+  },
+  updateQuestion(question){
+    return this.call("put", `questions/${question.id}`, question)
   }
-  
 };
