@@ -109,6 +109,30 @@ class DataBase:
             results.append(result.participation_to_dict())
         return results
     
+    def get_all_questions(self):
+        cur = self.connection.cursor()
+        cur.execute("begin")
+        cur.execute("SELECT * FROM questions ORDER BY position ASC")
+        rows = cur.fetchall()
+        questions = []
+        for row in rows:
+            id = row[0]
+            position = row[1]
+            title = row[2]
+            text = row[3]
+            image = row[4]
+            cur.execute("SELECT id, text, isCorrect FROM possible_answers WHERE question_id = ?", (id,))
+            possible_answers_rows = cur.fetchall()
+            possible_answers = []
+            for possible_answer_row in possible_answers_rows:
+                possible_answer = models.PossibleAnswer(id=possible_answer_row[0], text=possible_answer_row[1], isCorrect=bool(possible_answer_row[2]))
+                possible_answers.append(possible_answer.possibleAnswer_to_dict())
+            question = models.Question(id, position, title, text, image, possible_answers)
+            questions.append(question.question_to_dict())
+        cur.execute("commit")
+        return questions
+        
+    
     def delete_all_questions(self):
         cur = self.connection.cursor()
         cur.execute("begin")

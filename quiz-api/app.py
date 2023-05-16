@@ -61,6 +61,13 @@ def DeleteAllParticipations():
 	db.delete_all_participations()
 	return "OK", 204
 
+@app.route("/questions/all", methods=["GET"])
+def GetAllQuestions():
+	db = db_utils.DataBase()
+	questions = db.get_all_questions()
+	return {"questions": questions}, 200
+
+
 @app.route('/questions/<int:id>', methods=['GET'])
 def GetQuestionById(id):
 	db = db_utils.DataBase()

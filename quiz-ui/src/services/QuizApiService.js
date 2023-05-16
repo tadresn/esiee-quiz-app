@@ -65,5 +65,8 @@ export default {
   },
   updateQuestion(question){
     return this.call("put", `questions/${question.id}`, question)
+  },
+  getAllQuestions(){
+    return this.call('get', "questions/all")
   }
 };
