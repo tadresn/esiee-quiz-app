@@ -2,7 +2,8 @@
 <div class="container">
     <div class="row">
       <div class="col">
-        <h1 class="titre text-center my-3">Home page</h1>
+        <h1 class="titre text-center my-3">Bienvenue sur le Quiz !</h1>
+        <h3 class="titre text-center my-3 mt-5">Classement des participants</h3>
         <table>
           <tr>
             <th><b>Rang</b></th>
@@ -32,7 +33,8 @@ export default {
   name: "HomePage",
   data() {
     let registeredScores = []
-    return { registeredScores
+    return { 
+      registeredScores
     };
   },
   async created() {

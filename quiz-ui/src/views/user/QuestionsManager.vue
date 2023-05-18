@@ -48,6 +48,7 @@ export default {
       .postParticipation(participationStorageService.getPlayerName(), this.answersOfPlayer)
       .then((value)=>{
         participationStorageService.saveParticipationScore(value.data.score)
+        participationStorageService.saveParticipationAnswersSummaries(value.data.answersSummaries)
       })
       .catch((error)=>{
         console.log(error)

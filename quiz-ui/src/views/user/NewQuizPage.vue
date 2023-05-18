@@ -39,9 +39,11 @@ export default {
     launchNewQuiz(){
       if(this.username === ''){
         this.errorMessage = 'Le nom est obligatoire';
+        return
       }
       if(this.size === 0){
         this.errorMessage = "Il n'y a pas de quiz créé. Veuillez patienter qu'un administrateur crée un quiz."
+        return
       }
       else{
         participationStorageService.savePlayerName(this.username);

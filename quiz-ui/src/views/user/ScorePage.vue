@@ -1,10 +1,29 @@
 <script>
 import participationStorageService from '../../services/ParticipationStorageService';
+import quizApiService from '../../services/QuizApiService';
 
 export default {
+  data(){
+    return {
+      questions:[],
+      answersSummaries: []
+    }
+  },
   computed: {
     playerName: participationStorageService.getPlayerName,
-    score: participationStorageService.getParticipationScore
+    score: participationStorageService.getParticipationScore,
+    
+  }, 
+  async created(){
+    const answers = participationStorageService.getParticipationAnswersSummaries()
+    const answerJSON = JSON.parse(answers)
+    this.answersSummaries = answerJSON
+    await quizApiService.getAllQuestions().then((value)=>{
+      this.questions = value.data.questions
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
   }
 }
 </script>
@@ -24,9 +43,33 @@ export default {
   </div>
 </div>
 </div>
+<div class="container">
+    <div class="row">
+      <div class="col">
+        <h1 class="titre text-center my-3">Vos résultats</h1>
+        <table>
+          <tr>
+            <th><b>Question</b></th>
+            <th><b>Réponse</b></th>
+          </tr>
+          <tr v-for="(question, index) in questions" v-bind:key="question.id" v-bind:class="{ 'green-row': answersSummaries[index].was_correct, 'red-row': !answersSummaries[index].was_correct }">
+            <td>{{ question.text }}</td>
+            <td>{{ answersSummaries[index].correctAnswerPosition }}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style>
+.green-row {
+  background-color: rgba(70, 178, 70, 0.873);
+}
+
+.red-row {
+  background-color: rgba(187, 50, 50, 0.873);
+}
 .card-custom{
 max-width: 500px;
 max-height: 500px;

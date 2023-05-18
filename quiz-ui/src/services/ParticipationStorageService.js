@@ -14,6 +14,12 @@ export default {
   getParticipationScore() {
 		return window.localStorage.getItem("participationScore");
   },
+  saveParticipationAnswersSummaries(answersSummaries){
+    window.localStorage.setItem("answersSummaries", JSON.stringify(answersSummaries));
+  },
+  getParticipationAnswersSummaries(){
+    return window.localStorage.getItem("answersSummaries");
+  },
   saveQuestionToUpdate(question){
     window.localStorage.setItem("question", JSON.stringify(question));
   },
