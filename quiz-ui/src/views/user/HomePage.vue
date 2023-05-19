@@ -2,7 +2,8 @@
 <div class="container">
     <div class="row">
       <div class="col">
-        <h1 class="titre text-center my-3">Bienvenue sur le Quiz !</h1>
+        <h1 class="titre text-center my-3">Prêt pour le volant ?</h1>
+        <h1 class="titre text-center my-3">Testez-vous avec notre quiz sur le code de la route</h1>
         <h3 class="titre text-center my-3 mt-5">Classement des participants</h3>
         <table>
           <tr>
