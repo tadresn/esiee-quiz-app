@@ -63,15 +63,6 @@ export default {
 </template>
 
 <style>
-.button {
-  display: inline-block;
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 3px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
 .tableau{
   border: 1px solid black;
 }
