@@ -53,8 +53,8 @@ export default {
             <th><b>Réponse</b></th>
           </tr>
           <tr v-for="(question, index) in questions" v-bind:key="question.id" v-bind:class="{ 'green-row': answersSummaries[index].was_correct, 'red-row': !answersSummaries[index].was_correct }">
-            <td>{{ question.text }}</td>
-            <td>{{ answersSummaries[index].correctAnswerPosition }}</td>
+            <td class="tableau">{{ question.text }}</td>
+            <td class="tableau">{{ answersSummaries[index].correctAnswerPosition }}</td>
           </tr>
         </table>
       </div>
@@ -63,6 +63,9 @@ export default {
 </template>
 
 <style>
+.tableau{
+  border: 1px solid black;
+}
 .green-row {
   background-color: rgba(70, 178, 70, 0.873);
 }
